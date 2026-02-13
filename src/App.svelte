@@ -12,7 +12,26 @@
   const characterImages = import.meta.glob(
   '/src/assets/character_sprites/*.png',
   { eager: true, import: 'default' }
-);
+  );
+
+  import { onMount } from 'svelte';
+
+  onMount(() => {
+    // After first render
+    setTimeout(() => {
+      preloadImages();
+    }, 0);
+  });
+
+  function preloadImages() {
+    for (const option of baseOptions) {
+      const img = new Image();
+      img.src = option.image;
+    }
+
+    console.log("Preloading started");
+  }
+
   const baseOptions: CharacterOption[] = characters
   .filter((c: any) => c.released === 1)
   .map((c: any) => {
@@ -23,7 +42,7 @@
     name: c.name,
     image: characterImages[imagePath] as string
   };
-});
+  });
 
   let activeSlot = $state<keyof typeof slots | null>(null);
   let showPicker = $state(false);

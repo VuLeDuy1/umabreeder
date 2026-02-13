@@ -115,7 +115,6 @@
                     class="charImg"
                     src={c.image}
                     alt={c.name}
-                    loading="lazy"
                   />
                 </div>
 

@@ -88,7 +88,6 @@
                     class="charImg"
                     src={c.image}
                     alt={c.name}
-                    loading="lazy"
                   />
                 </div>
 
@@ -238,8 +237,8 @@
 
 /* ========== Avatar Circle ========== */
 .charCircle {
-  width: max(64px, 6vmin);
-  aspect-ratio: 1;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   background: white;
   border: 2px solid #d5d5d9;
