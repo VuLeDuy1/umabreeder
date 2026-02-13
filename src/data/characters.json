@@ -1,0 +1,382 @@
+[
+    {
+        "id": 1001,
+        "name": "Special Week",
+        "released": 1
+    },
+    {
+        "id": 1002,
+        "name": "Silence Suzuka",
+        "released": 1
+    },
+    {
+        "id": 1003,
+        "name": "Tokai Teio",
+        "released": 1
+    },
+    {
+        "id": 1004,
+        "name": "Maruzensky",
+        "released": 1
+    },
+    {
+        "id": 1005,
+        "name": "Fuji Kiseki",
+        "released": 1
+    },
+    {
+        "id": 1006,
+        "name": "Oguri Cap",
+        "released": 1
+    },
+    {
+        "id": 1007,
+        "name": "Gold Ship",
+        "released": 1
+    },
+    {
+        "id": 1008,
+        "name": "Vodka",
+        "released": 1
+    },
+    {
+        "id": 1009,
+        "name": "Daiwa Scarlet",
+        "released": 1
+    },
+    {
+        "id": 1010,
+        "name": "Taiki Shuttle",
+        "released": 1
+    },
+    {
+        "id": 1011,
+        "name": "Grass Wonder",
+        "released": 1
+    },
+    {
+        "id": 1012,
+        "name": "Hishi Amazon",
+        "released": 1
+    },
+    {
+        "id": 1013,
+        "name": "Mejiro McQueen",
+        "released": 1
+    },
+    {
+        "id": 1014,
+        "name": "El Condor Pasa",
+        "released": 1
+    },
+    {
+        "id": 1015,
+        "name": "T.M. Opera O",
+        "released": 1
+    },
+    {
+        "id": 1016,
+        "name": "Narita Brian",
+        "released": 1
+    },
+    {
+        "id": 1017,
+        "name": "Symboli Rudolf",
+        "released": 1
+    },
+    {
+        "id": 1018,
+        "name": "Air Groove",
+        "released": 1
+    },
+    {
+        "id": 1019,
+        "name": "Agnes Digital",
+        "released": 1
+    },
+    {
+        "id": 1020,
+        "name": "Seiun Sky",
+        "released": 1
+    },
+    {
+        "id": 1021,
+        "name": "Tamamo Cross",
+        "released": 1
+    },
+    {
+        "id": 1022,
+        "name": "Fine Motion",
+        "released": 1
+    },
+    {
+        "id": 1023,
+        "name": "Biwa Hayahide",
+        "released": 1
+    },
+    {
+        "id": 1024,
+        "name": "Mayano Top Gun",
+        "released": 1
+    },
+    {
+        "id": 1025,
+        "name": "Manhattan Cafe",
+        "released": 1
+    },
+    {
+        "id": 1026,
+        "name": "Mihono Bourbon",
+        "released": 1
+    },
+    {
+        "id": 1027,
+        "name": "Mejiro Ryan",
+        "released": 1
+    },
+    {
+        "id": 1028,
+        "name": "Hishi Akebono",
+        "released": 1
+    },
+    {
+        "id": 1029,
+        "name": "Yukino Bijin",
+        "released": 0
+    },
+    {
+        "id": 1030,
+        "name": "Rice Shower",
+        "released": 1
+    },
+    {
+        "id": 1031,
+        "name": "Ines Fujin",
+        "released": 0
+    },
+    {
+        "id": 1032,
+        "name": "Agnes Tachyon",
+        "released": 1
+    },
+    {
+        "id": 1033,
+        "name": "Admire Vega",
+        "released": 0
+    },
+    {
+        "id": 1034,
+        "name": "Inari One",
+        "released": 0
+    },
+    {
+        "id": 1035,
+        "name": "Winning Ticket",
+        "released": 1
+    },
+    {
+        "id": 1036,
+        "name": "Air Shakur",
+        "released": 0
+    },
+    {
+        "id": 1037,
+        "name": "Eishin Flash",
+        "released": 0
+    },
+    {
+        "id": 1038,
+        "name": "Curren Chan",
+        "released": 1
+    },
+    {
+        "id": 1039,
+        "name": "Kawakami Princess",
+        "released": 1
+    },
+    {
+        "id": 1040,
+        "name": "Gold City",
+        "released": 1
+    },
+    {
+        "id": 1041,
+        "name": "Sakura Bakushin O",
+        "released": 1
+    },
+    {
+        "id": 1042,
+        "name": "Seeking the Pearl",
+        "released": 0
+    },
+    {
+        "id": 1043,
+        "name": "Shinko Windy",
+        "released": 0
+    },
+    {
+        "id": 1044,
+        "name": "Sweep Tosho",
+        "released": 0
+    },
+    {
+        "id": 1045,
+        "name": "Super Creek",
+        "released": 1
+    },
+    {
+        "id": 1046,
+        "name": "Smart Falcon",
+        "released": 1
+    },
+    {
+        "id": 1047,
+        "name": "Zenno Rob Roy",
+        "released": 0
+    },
+    {
+        "id": 1048,
+        "name": "Tosen Jordan",
+        "released": 1
+    },
+    {
+        "id": 1049,
+        "name": "Nakayama Festa",
+        "released": 0
+    },
+    {
+        "id": 1050,
+        "name": "Narita Taishin",
+        "released": 1
+    },
+    {
+        "id": 1051,
+        "name": "Nishino Flower",
+        "released": 0
+    },
+    {
+        "id": 1052,
+        "name": "Haru Urara",
+        "released": 1
+    },
+    {
+        "id": 1053,
+        "name": "Bamboo Memory",
+        "released": 0
+    },
+    {
+        "id": 1054,
+        "name": "Biko Pegasus",
+        "released": 0
+    },
+    {
+        "id": 1055,
+        "name": "Marvelous Sunday",
+        "released": 0
+    },
+    {
+        "id": 1056,
+        "name": "Matikanefukukitaru",
+        "released": 1
+    },
+    {
+        "id": 1057,
+        "name": "Mr. C.B.",
+        "released": 0
+    },
+    {
+        "id": 1058,
+        "name": "Meisho Doto",
+        "released": 1
+    },
+    {
+        "id": 1059,
+        "name": "Mejiro Dober",
+        "released": 1
+    },
+    {
+        "id": 1060,
+        "name": "Nice Nature",
+        "released": 1
+    },
+    {
+        "id": 1061,
+        "name": "King Halo",
+        "released": 1
+    },
+    {
+        "id": 1062,
+        "name": "Matikanetannhauser",
+        "released": 0
+    },
+    {
+        "id": 1063,
+        "name": "Ikuno Dictus",
+        "released": 0
+    },
+    {
+        "id": 1064,
+        "name": "Mejiro Palmer",
+        "released": 0
+    },
+    {
+        "id": 1065,
+        "name": "Daitaku Helios",
+        "released": 0
+    },
+    {
+        "id": 1066,
+        "name": "Twin Turbo",
+        "released": 0
+    },
+    {
+        "id": 1067,
+        "name": "Satono Diamond",
+        "released": 0
+    },
+    {
+        "id": 1068,
+        "name": "Kitasan Black",
+        "released": 0
+    },
+    {
+        "id": 1069,
+        "name": "Sakura Chiyono O",
+        "released": 1
+    },
+    {
+        "id": 1070,
+        "name": "Sirius Symboli",
+        "released": 0
+    },
+    {
+        "id": 1071,
+        "name": "Mejiro Ardan",
+        "released": 0
+    },
+    {
+        "id": 1072,
+        "name": "Yaeno Muteki",
+        "released": 0
+    },
+    {
+        "id": 1073,
+        "name": "Tsurumaru Tsuyoshi",
+        "released": 0
+    },
+    {
+        "id": 1074,
+        "name": "Mejiro Bright",
+        "released": 0
+    },
+    {
+        "id": 1077,
+        "name": "Narita Top Road",
+        "released": 0
+    },
+    {
+        "id": 1078,
+        "name": "Yamanin Zephyr",
+        "released": 0
+    }
+]
