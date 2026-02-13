@@ -117,6 +117,9 @@
     };
   }
 
+  let showAlert = $state(false);
+  let alertMessage = $state("");
+
 function onRecommend() {
   const lineageIds = [
     slots.child?.id ?? null,
@@ -128,7 +131,7 @@ function onRecommend() {
     slots.gp4?.id ?? null
   ];
 
-  const availableIds = baseOptions.map(o => o.id);
+  const availableIds = selectedCharacters.map(o => o.id);
 
   const result = findOptimalLineage(
     lineageIds,
@@ -136,7 +139,13 @@ function onRecommend() {
     { duoAffinity, trioAffinity }
   );
 
-  if (!result) return;
+
+  if (!result) {
+    //alert user filter have too few characters
+    showAlert = true;
+    alertMessage = "Recommendation failed. Please ensure your filter includes enough characters to fill all slots.";
+    return
+  };
 
   const idToOption = new Map(baseOptions.map(o => [o.id, o]));
 
@@ -305,3 +314,84 @@ function onRecommend() {
     }}
   />
 {/if}
+
+{#if showAlert}
+  <div class="alertOverlay" role="alertdialog" aria-modal="true">
+    <div class="alertCard">
+      <div class="alertMessage">{alertMessage}</div>
+      <button class="alertBtn" onclick={() => showAlert = false}>OK</button>
+    </div>
+  </div>
+{/if}
+
+<style>
+.alertOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 1000;
+}
+
+.alertCard {
+  background: #ffffff;
+  color: #1f2937;
+  max-width: 420px;
+  width: 100%;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.15),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.alertMessage {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.alertBtn {
+  align-self: flex-end;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+
+  background: #2563eb;
+  color: white;
+}
+
+.alertBtn:hover {
+  background: #1d4ed8;
+}
+
+.alertBtn:active {
+  transform: scale(0.97);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+</style>
