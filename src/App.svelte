@@ -271,7 +271,7 @@ function onRecommend() {
   }
 
   let showFilter = $state(false);
-  let selectedCharacters = $state<CharacterOption[]>([]);
+  let selectedCharacters = $state(baseOptions);
 
 
 </script>
