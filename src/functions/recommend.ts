@@ -17,6 +17,8 @@ export interface AffinityFunctions {
   ) => number | null | undefined;
 }
 
+
+
 export function findOptimalLineage(
   lineageIds: (number | null)[],
   availableIds: number[],
@@ -42,8 +44,11 @@ export function findOptimalLineage(
   }
 
   function findForChild(
-    lineageIds: (number | null)[]
-  ): LineageCharacters | null {
+    lineageIds: (number | null)[],
+  ): {
+  lineage: LineageCharacters,    
+  score: number} | null
+ {
     const child = lineageIds[0]!;
     const fixedParents = lineageIds.slice(1, 3);
     const fixedGps = lineageIds.slice(3, 7);
@@ -107,9 +112,48 @@ export function findOptimalLineage(
       for (const p2 of p2Set) {
         if (p1 === p2) continue;
 
-        const half1 = bestHalves.get(p1);
-        const half2 = bestHalves.get(p2);
-        if (!half1 || !half2) continue;
+        const baseHalf1 = bestHalves.get(p1);
+        const baseHalf2 = bestHalves.get(p2);
+        if (!baseHalf1 || !baseHalf2) continue;
+
+        // Clone so we don't mutate cached halves
+        let half1 = {
+          gps: [...baseHalf1.gps],
+          scores: [...baseHalf1.scores]
+        };
+
+        let half2 = {
+          gps: [...baseHalf2.gps],
+          scores: [...baseHalf2.scores]
+        };
+
+        // Override P1 grandparents if fixed
+        if (fixedGps[0]) {
+          half1.gps[0] = fixedGps[0];
+          half1.scores[0] = gpScore(child, p1, fixedGps[0]);
+        }
+        if (fixedGps[1]) {
+          half1.gps[1] = fixedGps[1];
+          half1.scores[1] = gpScore(child, p1, fixedGps[1]);
+        }
+
+        // Override P2 grandparents if fixed
+        if (fixedGps[2]) {
+          half2.gps[0] = fixedGps[2];
+          half2.scores[0] = gpScore(child, p2, fixedGps[2]);
+        }
+        if (fixedGps[3]) {
+          half2.gps[1] = fixedGps[3];
+          half2.scores[1] = gpScore(child, p2, fixedGps[3]);
+        }
+
+        if (
+          half1.gps.includes(p1) ||
+          half2.gps.includes(p2)
+        ) {
+          continue;
+        }
+
 
         const score =
           (affToChild.get(p1) || 0) +
@@ -135,12 +179,12 @@ export function findOptimalLineage(
       }
     }
 
-    return bestLineage;
+    return bestLineage?{'lineage': bestLineage,'score': bestScore}: null;
   }
 
   // Child fixed
   if (lineageIds[0]) {
-    return findForChild(lineageIds);
+    return findForChild(lineageIds)?.lineage || null;
   }
 
   // Child not fixed
@@ -150,20 +194,8 @@ export function findOptimalLineage(
   for (const c of availableIds) {
     const result = findForChild([c, ...lineageIds.slice(1)]);
     if (!result) continue;
-
-    // We still need score comparison internally,
-    // so re-evaluate using same logic
-    const temp = findForChild([c, ...lineageIds.slice(1)]);
-    if (!temp) continue;
-
-    const score =
-      getAffinity(temp.p1, temp.child) +
-      getAffinity(temp.p2, temp.child) +
-      2 * getAffinity(temp.p1, temp.p2) +
-      getAffinity(temp.child, temp.p1, temp.gp1) +
-      getAffinity(temp.child, temp.p1, temp.gp2) +
-      getAffinity(temp.child, temp.p2, temp.gp3) +
-      getAffinity(temp.child, temp.p2, temp.gp4);
+    const temp = result.lineage;
+    const score = result.score;
 
     if (score > bestScore) {
       bestScore = score;
