@@ -1,5 +1,9 @@
 <script lang="ts">
   import CardSlot from "./CardSlot.svelte";
+  import doubleCircle from '../assets/icons/double_circle.svg';
+  import circle from '../assets/icons/circle.svg';
+  import triangle from '../assets/icons/triangle.svg';
+  import explainImage from "/compatibility_chart.png"
 
   // Props (v5 runes)
   let {
@@ -27,9 +31,9 @@
   // ========================
 
   function affinityIcon(score: number) {
-    if (score >= 151) return "src/assets/icons/double_circle.svg";
-    if (score >= 51) return "src/assets/icons/circle.svg";
-    return "src/assets/icons/triangle.svg";
+    if (score >= 151) return doubleCircle;
+    if (score >= 51) return circle;
+    return triangle;
   }
 
   const multipliers = $derived.by(() => {
@@ -138,7 +142,7 @@
     <span>Total Individual Compatibility</span>
 
     <a
-      href="/compatibility_chart.png"
+      href={explainImage}
       target="_blank"
       rel="noopener noreferrer"
       class="infoIcon"
@@ -266,7 +270,7 @@
     border-radius: 50%;
 
     color: orange;
-    font-size: 12px;
+    font-size: 24px;
     font-weight: bold;
 
     display: flex;
