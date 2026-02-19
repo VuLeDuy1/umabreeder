@@ -1,0 +1,225 @@
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px; /* ensures breathing room on small screens */
+  z-index: 1000;
+}
+
+/* ========== Card ========== */
+.modalCard {
+  width: min(1100px, 100%);
+  height: min(92vh, 100%);
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e9e6ea;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ========== Header ========== */
+.modalHeader {
+  background: #39b000;
+  padding: clamp(14px, 2vw, 20px);
+  text-align: center;
+}
+
+.modalTitle {
+  color: white;
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 700;
+}
+
+/* ========== Body ========== */
+.modalBody {
+  padding: clamp(16px, 2vw, 24px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1; /* allows grid section to grow */
+  min-height: 0; /* critical for flex scroll areas */
+}
+
+.modalHint {
+  text-align: center;
+  font-size: 14px;
+  color: #6b4b4b;
+}
+
+/* ========== Search ========== */
+.modalSearchRow {
+  display: flex;
+  justify-content: center;
+}
+
+.modalSearch {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid #cfcfd3;
+  background: #f3f3f5;
+  font-size: 14px;
+  outline: none;
+  color: #000000;
+}
+
+.modalSearch:focus {
+  border-color: #39b000;
+  background: white;
+}
+/* ========== Scroll Area ========== */
+.modalGridWrap {
+  flex: 1;
+  min-height: 0;
+  background: #f4f4f6;
+  border-radius: 12px;
+  padding: clamp(12px, 2vw, 20px);
+  overflow-y: auto;
+}
+
+/* Scrollbar */
+.modalGridWrap::-webkit-scrollbar {
+  width: 8px;
+}
+.modalGridWrap::-webkit-scrollbar-thumb {
+  background: #4b4b4f;
+  border-radius: 8px;
+}
+
+/* ========== Grid ========== */
+.modalGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: max(10px, 1.5vmin);
+  justify-items: center;
+}
+
+/* ========== Tile ========== */
+.charTile {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s ease;
+  width: 100%;
+  max-width: 120px;
+  outline: none;
+}
+
+.charTile:hover {
+  transform: translateY(-4px);
+}
+
+.charTile--selected .charCircle {
+  border: 3px solid #39b000;
+  box-shadow: 0 0 0 3px rgba(57, 176, 0, 0.2);
+}
+
+.charTile--selected {
+  transform: translateY(-4px);
+}
+
+.charImg {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+/* ========== Score Badge ========== */
+
+
+/* ========== Name ========== */
+.charName {
+  font-size: clamp(12px, 2.2vw, 14px);
+  font-weight: 600;
+  color: #6b2c2c;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* ========== Footer ========== */
+.modalFooter {
+  background: #dedde2;
+  padding: clamp(14px, 2vw, 18px);
+  display: flex;
+  justify-content: center;
+}
+
+.modalBtn {
+  width: min(240px, 100%);
+  padding: 10px 0;
+  border-radius: 10px;
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.modalBtn--ghost {
+  background: #d9d9dc;
+  color: #5a2c2c;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.modalBtn--ghost:hover {
+  background: #cfcfd4;
+}
+
+/* ========== Avatar Circle ========== */
+.charCircle {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: white;
+  border: 2px solid #d5d5d9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.charCircle--none {
+  font-size: 20px;
+  color: #999;
+}
+
+
+/* ========== Score Badge ========== */
+.charScore {
+  position: absolute;
+  top: max(-30px, -3vh);
+  background: #39b000;
+  color: white;
+  font-size: clamp(10px, 2vw, 12px);
+  font-weight: 600;
+  padding: 4px 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  border-radius: 40%;
+}
+
+/* ========== Mobile Adjustments ========== */
+@media (max-width: 600px) {
+  .modalOverlay {
+    align-items: flex-end;
+  }
+
+  .modalCard {
+    border-radius: 16px 16px 0 0;
+    height: 95vh;
+  }
+
+  .modalGrid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+}
