@@ -18,8 +18,8 @@
   } = $props<{
     slots: Record<string, { id: number; name: string; image: string } | null>;
     displayedAffinity?: number;
-    totalCompatibility?: number;
-    lineageScores?: Record<string, number>;
+    totalCompatibility?: number | null;
+    lineageScores?: Record<string, number|null>;
     onReset?: () => void;
     onRecommend?: () => void;
     onFilter?: () => void;
@@ -38,12 +38,12 @@
 
   const multipliers = $derived.by(() => {
     const mults: Record<string,number|null> = {};
-    if (!lineageScores) return mults;
+    if (lineageScores === null) return null;
     for (const key of Object.keys(lineageScores)) {
-      if (!lineageScores[key])
-        mults[key] = 1;
-      else 
+      if (lineageScores[key] !== null)
         mults[key] = 1 + lineageScores[key] / 100;
+      else 
+        mults[key] = null;
     }
     return mults;
   })
@@ -85,14 +85,14 @@
       <CardSlot
         label="Parent 1"
         image={slots.p1?.image}
-        multiplier={multipliers.p1}
+        multiplier={multipliers?.p1}
         onclick={() => onSlotClick?.({ slot: "p1" })}
       />
 
       <CardSlot
         label="Parent 2"
         image={slots.p2?.image}
-        multiplier={multipliers.p2}
+        multiplier={multipliers?.p2}
         onclick={() => onSlotClick?.({ slot: "p2" })}
       />
     </div>
@@ -100,22 +100,22 @@
     <div class="gpRow">
       <CardSlot label="GP 1.1"
         image={slots.gp1?.image}
-        multiplier={multipliers.gp1}
+        multiplier={multipliers?.gp1}
         onclick={() => onSlotClick?.({ slot: "gp1" })}
       />
       <CardSlot label="GP 1.2"
         image={slots.gp2?.image}
-        multiplier={multipliers.gp2}
+        multiplier={multipliers?.gp2}
         onclick={() => onSlotClick?.({ slot: "gp2" })}
       />
       <CardSlot label="GP 2.1"
         image={slots.gp3?.image}
-        multiplier={multipliers.gp3}
+        multiplier={multipliers?.gp3}
         onclick={() => onSlotClick?.({ slot: "gp3" })}
       />
       <CardSlot label="GP 2.2"
         image={slots.gp4?.image}
-        multiplier={multipliers.gp4}
+        multiplier={multipliers?.gp4}
         onclick={() => onSlotClick?.({ slot: "gp4" })}
       />
     </div>

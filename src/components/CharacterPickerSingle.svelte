@@ -76,7 +76,7 @@
                 onclick={() => onSelect(c)}
               >
                 <div class="charCircle">
-                  {#if showScore && scoreById && scoreById[c.id] !== 0 && scoreById[c.id] !== undefined}
+                  {#if showScore && scoreById && scoreById[c.id] !== undefined}
                     <div
                       class="charScore"
                       title={`Extra Compatibility: ${scoreById[c.id]}`}
