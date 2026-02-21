@@ -1,51 +1,26 @@
 <script lang="ts">
-  import AffinityLayout from "./components/AffinityLayout.svelte";
   import CharacterPickerMulti from "./components/CharacterPickerMulti.svelte";
   import CharacterPickerSingle, {
     type CharacterOption
   } from "./components/CharacterPickerSingle.svelte";
-  import characters from "./data/characters.json";
   import { duoAffinity, trioAffinity } from "./functions/Affinity";
-  import { findOptimalLineage } from "./functions/recommend";
+  import { findOptimalLineage } from "./functions/Recommend";
+  import "./LineagePage.css";
+  import explainImage from "/compatibility_chart.png"
+  import {affinityIcon,
+          preloadImages,
+          baseOptions,
+          idToOption}
+    from "./LineagePage";
+  import LineageGrid from "./components/LineageGrid.svelte";
 
-
-  const characterImages = import.meta.glob(
-  '/src/assets/character_sprites/*.png',
-  { eager: true, import: 'default' }
-  );
-
-  import { onMount } from 'svelte';
-
+  import {onMount} from "svelte";
   onMount(() => {
     // After first render
     setTimeout(() => {
       preloadImages();
     }, 0);
   });
-
-  function preloadImages() {
-    for (const option of baseOptions) {
-      const img = new Image();
-      img.src = option.image;
-    }
-
-    console.log("Preloading started");
-  }
-
-  const baseOptions: CharacterOption[] = characters
-  .filter((c: any) => c.released === 1)
-  .map((c: any) => {
-  const imagePath = `/src/assets/character_sprites/${c.name}.png`;
-
-  return {
-    id: c.id,
-    name: c.name,
-    image: characterImages[imagePath] as string
-  };
-  });
-
-  let activeSlot = $state<keyof typeof slots | null>(null);
-  let showPicker = $state(false);
 
   // Svelte 5 state rune
   let slots = $state<{
@@ -77,12 +52,13 @@
     gp4: (s) => [s.p2?.name, s.gp3?.name].filter(Boolean) as string[],
   };
 
+  let activeSlot = $state<keyof typeof slots | null>(null);
+  let showPicker = $state(false);
+
   let options = $derived.by(() => {
     const excluded = new Set(activeSlot ? exclusionRules[activeSlot]?.(slots).filter(Boolean) ?? [] : []);
     return baseOptions.filter((c) => !excluded.has(c.name));
   });
-
-
 
   function onSlotClick(detail: { slot: string }) {
     activeSlot = detail.slot as keyof typeof slots;
@@ -100,25 +76,19 @@
 
   }
 
-  function onCancel() {
-    showPicker = false;
-    activeSlot = null;
-  }
-  
-  function onReset(){
-    slots = {
-      child: null,
-      p1: null,
-      p2: null,
-      gp1: null,
-      gp2: null,
-      gp3: null,
-      gp4: null
-    };
-  }
+function onCancel() {
+  showPicker = false;
+  activeSlot = null;
+}
 
-  let showAlert = $state(false);
-  let alertMessage = $state("");
+function onReset(){
+  slots = Object.fromEntries(
+    Object.keys(slots).map(k => [k, null])
+  ) as typeof slots
+}
+
+let showAlert = $state(false);
+let alertMessage = $state("");
 
 function onRecommend() {
   const lineageIds = [
@@ -147,8 +117,6 @@ function onRecommend() {
     return
   };
 
-  const idToOption = new Map(baseOptions.map(o => [o.id, o]));
-
   slots = {
     child: idToOption.get(result.child) ?? null,
     p1: idToOption.get(result.p1) ?? null,
@@ -161,10 +129,10 @@ function onRecommend() {
 }
 
   // Helper to sum duo affinities
-  const sumDuoAffinities = (mainId: number | null, companions: (number | null)[]): number => {
-    if (!mainId) return 0;
+  const sumDuoAffinities = (mainId: number | null, companions: (number | null)[]): number | null => {
+    if (!mainId) return null;
     const sum = companions.reduce((sum, id) => (sum||0) + (duoAffinity(mainId, id) || 0), 0);
-    return sum || 0;
+    return sum;
   };
 
   function onFilter(){
@@ -172,22 +140,24 @@ function onRecommend() {
   }
 
   // Define scoring rules for each slot
-  const scoringRules: Record<string, (sl: typeof slots) => number> = {
+  const scoringRules: Record<string, (sl: typeof slots) => number | null> = {
     p1: (s) => sumDuoAffinities(s.p1?.id ?? null, [s.child?.id ?? null, s.p2?.id ?? null, s.gp1?.id ?? null, s.gp2?.id ?? null]),
     p2: (s) => sumDuoAffinities(s.p2?.id ?? null, [s.child?.id ?? null, s.p1?.id ?? null, s.gp3?.id ?? null, s.gp4?.id ?? null]),
-    gp1: (s) => trioAffinity(s.gp1?.id ?? null, s.p1?.id ?? null, s.child?.id ?? null) || 0,
-    gp2: (s) => trioAffinity(s.gp2?.id ?? null, s.p1?.id ?? null, s.child?.id ?? null) || 0,
-    gp3: (s) => trioAffinity(s.gp3?.id ?? null, s.p2?.id ?? null, s.child?.id ?? null) || 0,
-    gp4: (s) => trioAffinity(s.gp4?.id ?? null, s.p2?.id ?? null, s.child?.id ?? null) || 0,
+    gp1: (s) => trioAffinity(s.gp1?.id ?? null, s.p1?.id ?? null, s.child?.id ?? null),
+    gp2: (s) => trioAffinity(s.gp2?.id ?? null, s.p1?.id ?? null, s.child?.id ?? null),
+    gp3: (s) => trioAffinity(s.gp3?.id ?? null, s.p2?.id ?? null, s.child?.id ?? null),
+    gp4: (s) => trioAffinity(s.gp4?.id ?? null, s.p2?.id ?? null, s.child?.id ?? null),
   };
 
   let lineageScores = $derived.by(() => {
-    const scores: Record<string, number> = {};
+    const scores: Record<string, number | null> = {};
     for (const [key, scoreFn] of Object.entries(scoringRules)) {
       scores[key] = scoreFn(slots);
     }
     return scores;
   });
+
+  
   let displayedAffinity = $derived.by(() => {
     let total = 0;
     const p1 = duoAffinity(
@@ -227,7 +197,7 @@ function onRecommend() {
     return total;
   });
   let totalCompatibility = $derived.by(() =>
-    Object.values(lineageScores).reduce((sum, v) => sum + (v ?? 0), 0)
+    Object.values(lineageScores).reduce((sum:number, v) => sum + (v ?? 0), 0)
   );
 
   function extraCompatibilityScores(
@@ -273,19 +243,73 @@ function onRecommend() {
   let showFilter = $state(false);
   let selectedCharacters = $state(baseOptions);
 
+  let multipliers = $derived.by(() => {
+    const mults: Record<string,number|null> = {};
+    if (lineageScores === null) return null;
+    for (const key of Object.keys(lineageScores)) {
+      if (lineageScores[key] !== null)
+        mults[key] = 1 + lineageScores[key] / 100;
+      else 
+        mults[key] = null;
+    }
+    return mults;
+  })
 
 </script>
 
-<AffinityLayout
-  {slots}
-  {displayedAffinity}
-  {totalCompatibility}
-  {lineageScores}
-  {onSlotClick}
-  {onReset}
-  {onRecommend}
-  {onFilter}
-/>
+<div class="page">
+  <div class="topBar">
+    <button class="pillBtn" onclick={() => onReset?.()}>
+      Reset
+    </button>
+
+    <button class="pillBtn" onclick={() => onRecommend?.()}>
+      Recommend
+    </button>
+  </div>
+  <div class="secondBar">
+    <button class="pillBtn" onclick={() => onFilter?.()}>
+      Filter
+    </button>
+  </div>
+
+  <LineageGrid
+    {slots}
+    {multipliers}
+    {onSlotClick}
+  />
+
+  <div class="bottomBar">
+    <div class="left">in-game affinity display</div>
+
+    <div class="mid">
+      <span class="purple">{displayedAffinity}</span>
+    </div>
+
+    <div class='midIcon'> 
+      <img src={affinityIcon(displayedAffinity)} alt = 'icon' />
+    </div>
+
+    <div class="mid">
+      <span class="orange">{totalCompatibility}</span>
+    </div>
+
+  <div class="right">
+    <span>Total Individual Compatibility</span>
+
+    <a
+      href={explainImage}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="infoIcon"
+      aria-label="What is Total Individual Compatibility?"
+    >
+      ?
+    </a>
+  </div>
+
+  </div>
+</div>
 
 {#if showPicker}
   <CharacterPickerSingle
@@ -323,75 +347,3 @@ function onRecommend() {
     </div>
   </div>
 {/if}
-
-<style>
-.alertOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-  z-index: 1000;
-}
-
-.alertCard {
-  background: #ffffff;
-  color: #1f2937;
-  max-width: 420px;
-  width: 100%;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow:
-    0 10px 25px rgba(0, 0, 0, 0.15),
-    0 4px 10px rgba(0, 0, 0, 0.08);
-
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.alertMessage {
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.alertBtn {
-  align-self: flex-end;
-  padding: 8px 18px;
-  border-radius: 8px;
-  border: none;
-  font-weight: 600;
-  cursor: pointer;
-
-  background: #2563eb;
-  color: white;
-}
-
-.alertBtn:hover {
-  background: #1d4ed8;
-}
-
-.alertBtn:active {
-  transform: scale(0.97);
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-</style>

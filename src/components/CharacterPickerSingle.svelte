@@ -46,8 +46,6 @@
       </div>
 
       <div class="modalBody">
-        <div class="modalHint">Pick a character.</div>
-
         <div class="modalSearchRow">
           <input
             class="modalSearch"

@@ -30,13 +30,14 @@
     .bubble {
       position: absolute;
       top: -15px;
-      padding: 8px 16px;
+      height: 32px;
+      width: 64px;
+      align-content: center;
       border-radius: 20px;
       font-weight: 700;
       font-size: 14px;
       box-shadow: 0 6px 12px rgba(0,0,0,0.25);
       z-index: 10;
       -webkit-text-stroke: .2px black;
-
     }
   </style>

@@ -43,9 +43,9 @@
   }
 
   .slot {
-    width: max(96px, 18vmin);
+    width: max(96px, 16vmin);
     aspect-ratio: 1 / 1;
-    border-radius: max(16px,3vmin);
+    border-radius: 16%;
     border: 2px dashed #8e7bd1;
     background: #b9b3d6;
     display: flex;
@@ -57,10 +57,12 @@
   }
 
   .slot:hover {
-    transform: translateY(-.3vmin);
+    transform: translateY(-1px);
   }
 
   .slot img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;

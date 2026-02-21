@@ -24,41 +24,37 @@
 /* ========== Header ========== */
 .modalHeader {
   background: #39b000;
-  padding: clamp(14px, 2vw, 20px);
+  padding: 10px;
   text-align: center;
 }
 
 .modalTitle {
   color: white;
-  font-size: clamp(18px, 2.5vw, 24px);
+  font-size: 24px;
   font-weight: 700;
 }
 
 /* ========== Body ========== */
 .modalBody {
-  padding: clamp(16px, 2vw, 24px);
+  padding: 12px;
   display: flex;
   flex-direction: column;
   gap: 16px;
   flex: 1; /* allows grid section to grow */
   min-height: 0; /* critical for flex scroll areas */
 }
-
-.modalHint {
-  text-align: center;
-  font-size: 14px;
-  color: #6b4b4b;
-}
-
 /* ========== Search ========== */
 .modalSearchRow {
   display: flex;
-  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  justify-content: space-between;
+  text-align: center;
 }
 
 .modalSearch {
-  width: 100%;
-  max-width: 600px;
+  flex: 1;
+  min-width: 0;
   padding: 10px 16px;
   border-radius: 999px;
   border: 1px solid #cfcfd3;

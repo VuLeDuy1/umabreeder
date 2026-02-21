@@ -80,22 +80,17 @@
       </div>
 
       <div class="modalBody">
-        <div class="modalHint">Pick one or more characters.</div>
-
         <div class="modalSearchRow">
-          <input
-            class="modalSearch"
-            placeholder="Search..."
-            bind:value={search}
-          />
-        </div>
-
-        <!-- Select All / Unselect All -->
-        <div style="text-align:center;">
+            <input
+              class="modalSearch"
+              placeholder="Search..."
+              bind:value={search}
+            />
+          <!-- Select All / Unselect All -->
           <button
             type="button"
             class="modalBtn modalBtn--ghost"
-            style="max-width: 220px;"
+            style="max-width: 120px;"
             onclick={toggleAll}
           >
             {allSelected ? "Unselect All" : "Select All"}
