@@ -22,19 +22,35 @@ export function findOptimalLineage(
   availableIds: number[],
   affinity: AffinityFunctions
 ): LineageCharacters | null {
+
   if (!lineageIds || lineageIds.length !== 7) return null;
 
   const { duoAffinity, trioAffinity } = affinity;
 
-  function getAffinity(
-    a: number | null,
-    b: number | null,
-    c?: number | null
-  ): number {
-    if (a == null || b == null) return 0;
-    if (c === undefined) return duoAffinity(a, b) ?? 0;
-    if (c == null) return 0;
-    return trioAffinity(c, b, a) ?? 0;
+  // ---------- Affinity memoization ----------
+
+  const duoCache = new Map<number, number>();
+  const trioCache = new Map<string, number>();
+  const MAX = 1000;
+
+  function getDuo(a: number, b: number) {
+    const key = a < b ? a * MAX + b : b * MAX + a;
+    let val = duoCache.get(key);
+    if (val === undefined) {
+      val = duoAffinity(a, b) ?? 0;
+      duoCache.set(key, val);
+    }
+    return val;
+  }
+
+  function getTrio(gp: number, parent: number, child: number) {
+    const key = `${gp}|${parent}|${child}`;
+    let val = trioCache.get(key);
+    if (val === undefined) {
+      val = trioAffinity(gp, parent, child) ?? 0;
+      trioCache.set(key, val);
+    }
+    return val;
   }
 
   function findForChild(
@@ -42,148 +58,146 @@ export function findOptimalLineage(
     fixedParents: (number | null)[],
     fixedGps: (number | null)[]
   ): { lineage: LineageCharacters; score: number } | null {
-    const parentPool = new Set([
-      ...availableIds,
-      ...fixedParents.filter(p => p != null)
-    ] as number[]);
-    parentPool.delete(child);
 
-    const gpPool = new Set([
+    // -------- Parent pool --------
+
+    const parents: number[] = [];
+    for (const id of availableIds) {
+      if (id !== child) parents.push(id);
+    }
+
+    if (fixedParents[0] != null) parents.push(fixedParents[0]);
+    if (fixedParents[1] != null) parents.push(fixedParents[1]);
+
+    const uniqueParents = [...new Set(parents)];
+
+    // -------- Child-parent affinity --------
+
+    const childParentAff: Record<number, number> = {};
+    for (const p of uniqueParents) {
+      childParentAff[p] = getDuo(child, p);
+    }
+
+    // -------- Grandparent pool --------
+
+    const gpPool = [...new Set([
       ...availableIds,
       ...fixedGps.filter(g => g != null)
-    ] as number[]);
+    ] as number[])];
 
-    const p1Set = fixedParents[0] != null
-      ? new Set([fixedParents[0]])
-      : parentPool;
+    // -------- Precompute best two GPs per parent (NO SORT) --------
 
-    const p2Set = fixedParents[1] != null
-      ? new Set([fixedParents[1]])
-      : parentPool;
-
-    const parentCandidates = new Set([...p1Set, ...p2Set]);
-
-    const affToChild = new Map<number, number>();
-    for (const p of parentCandidates) {
-      affToChild.set(p, getAffinity(child, p));
-    }
-
-    function gpScore(p: number, gp: number) {
-      return getAffinity(child, p, gp) + getAffinity(p, gp);
-    }
-
-    // Precompute best 2 grandparents per parent
     const bestHalves = new Map<
       number,
-      { gps: number[]; scores: number[] }
+      { gps: [number, number]; scores: [number, number] }
     >();
 
-    for (const p of parentCandidates) {
-      const scored: { gp: number; score: number }[] = [];
+    for (const p of uniqueParents) {
+      let best1Score = -Infinity;
+      let best2Score = -Infinity;
+      let best1 = -1;
+      let best2 = -1;
 
       for (const gp of gpPool) {
         if (gp === p) continue;
-        scored.push({ gp, score: gpScore(p, gp) });
+
+        const score =
+          getTrio(gp, p, child) +
+          getDuo(p, gp);
+
+        if (score > best1Score) {
+          best2Score = best1Score;
+          best2 = best1;
+          best1Score = score;
+          best1 = gp;
+        } else if (score > best2Score) {
+          best2Score = score;
+          best2 = gp;
+        }
       }
 
-      scored.sort((a, b) => b.score - a.score);
-
-      if (scored.length >= 2) {
+      if (best2 !== -1) {
         bestHalves.set(p, {
-          gps: [scored[0].gp, scored[1].gp],
-          scores: [scored[0].score, scored[1].score]
+          gps: [best1, best2],
+          scores: [best1Score, best2Score]
         });
       }
     }
 
-function buildHalf(
-  parent: number,
-  base: { gps: number[]; scores: number[] } | undefined,
-  fixedSlot0: number | null,
-  fixedSlot1: number | null
-): { gps: number[]; scores: number[] } | null {
-  if (!base) return null;
+    function buildHalf(
+      parent: number,
+      fixed0: number | null,
+      fixed1: number | null
+    ): { gps: [number, number]; total: number } | null {
 
-  const gps: (number | null)[] = [null, null];
-  const scores: number[] = [0, 0];
+      const base = bestHalves.get(parent);
+      if (!base) return null;
 
-  // Lock fixed slots
-  if (fixedSlot0 != null) {
-    if (fixedSlot0 === parent) return null;
-    gps[0] = fixedSlot0;
-    scores[0] = gpScore(parent, fixedSlot0);
-  }
+      const table = base;
+      const scores = table.scores;
+      const gps = table.gps;
 
-  if (fixedSlot1 != null) {
-    if (fixedSlot1 === parent) return null;
-    gps[1] = fixedSlot1;
-    scores[1] = gpScore(parent, fixedSlot1);
-  }
+      let gpA: number | null = null;
+      let gpB: number | null = null;
+      let total = 0;
 
-  // Prevent fixed duplication
-  if (
-    gps[0] != null &&
-    gps[1] != null &&
-    gps[0] === gps[1]
-  ) {
-    return null;
-  }
+      // Lock fixed slots
+      if (fixed0 != null) {
+        if (fixed0 === parent) return null;
+        gpA = fixed0;
+        total += getTrio(fixed0, parent, child) + getDuo(parent, fixed0);
+      }
 
-  // Fill empty slots from bestHalves
-  for (let i = 0; i < 2; i++) {
-    if (gps[i] != null) continue;
+      if (fixed1 != null) {
+        if (fixed1 === parent) return null;
+        if (gpA === fixed1) return null;
+        gpB = fixed1;
+        total += getTrio(fixed1, parent, child) + getDuo(parent, fixed1);
+      }
 
-    for (let j = 0; j < base.gps.length; j++) {
-      const candidate = base.gps[j];
+      // Fill missing from precomputed best two
+      for (let i = 0; i < 2; i++) {
+        const candidate = gps[i];
+        const score = scores[i];
 
-      if (candidate === parent) continue;
-      if (gps.includes(candidate)) continue;
+        if (candidate === parent) continue;
+        if (candidate === gpA || candidate === gpB) continue;
 
-      gps[i] = candidate;
-      scores[i] = base.scores[j];
-      break;
+        if (gpA == null) {
+          gpA = candidate;
+          total += score;
+        } else if (gpB == null) {
+          gpB = candidate;
+          total += score;
+        }
+      }
+
+      if (gpA == null || gpB == null) return null;
+
+      return { gps: [gpA, gpB], total };
     }
-
-    if (gps[i] == null) return null; // couldn't fill slot
-  }
-
-  return {
-    gps: gps as number[],
-    scores
-  };
-}
 
     let bestScore = -Infinity;
     let bestLineage: LineageCharacters | null = null;
 
-    for (const p1 of p1Set) {
-      for (const p2 of p2Set) {
+    for (const p1 of uniqueParents) {
+      if (fixedParents[0] != null && p1 !== fixedParents[0]) continue;
+
+      for (const p2 of uniqueParents) {
         if (p1 === p2) continue;
+        if (fixedParents[1] != null && p2 !== fixedParents[1]) continue;
 
-        const half1 = buildHalf(
-          p1,
-          bestHalves.get(p1),
-          fixedGps[0],
-          fixedGps[1]
-        );
-
-        const half2 = buildHalf(
-          p2,
-          bestHalves.get(p2),
-          fixedGps[2],
-          fixedGps[3]
-        );
+        const half1 = buildHalf(p1, fixedGps[0], fixedGps[1]);
+        const half2 = buildHalf(p2, fixedGps[2], fixedGps[3]);
 
         if (!half1 || !half2) continue;
 
         const score =
-          (affToChild.get(p1) ?? 0) +
-          (affToChild.get(p2) ?? 0) +
-          2 * getAffinity(p1, p2) +
-          half1.scores[0] +
-          half1.scores[1] +
-          half2.scores[0] +
-          half2.scores[1];
+          childParentAff[p1] +
+          childParentAff[p2] +
+          2 * getDuo(p1, p2) +
+          half1.total +
+          half2.total;
 
         if (score > bestScore) {
           bestScore = score;
@@ -200,7 +214,9 @@ function buildHalf(
       }
     }
 
-    return bestLineage ? { lineage: bestLineage, score: bestScore } : null;
+    return bestLineage
+      ? { lineage: bestLineage, score: bestScore }
+      : null;
   }
 
   const fixedChild = lineageIds[0];
@@ -216,9 +232,7 @@ function buildHalf(
 
   for (const c of availableIds) {
     const result = findForChild(c, fixedParents, fixedGps);
-    if (!result) continue;
-
-    if (result.score > bestScore) {
+    if (result && result.score > bestScore) {
       bestScore = result.score;
       bestLineage = result.lineage;
     }
