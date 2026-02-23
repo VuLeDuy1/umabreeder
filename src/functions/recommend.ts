@@ -82,7 +82,6 @@ export function findOptimalLineage(
 
     const gpPool = [...new Set([
       ...availableIds,
-      ...fixedGps.filter(g => g != null)
     ] as number[])];
 
     // -------- Precompute best two GPs per parent (NO SORT) --------
