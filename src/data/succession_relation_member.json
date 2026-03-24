@@ -7520,6 +7520,11 @@
         "relation_type": 8463
     },
     {
+        "chara_id": 1067,
+        "id": 1848,
+        "relation_type": 8465
+    },
+    {
         "chara_id": 1068,
         "id": 1850,
         "relation_type": 8466
@@ -7748,6 +7753,11 @@
         "chara_id": 1046,
         "id": 1916,
         "relation_type": 8499
+    },
+    {
+        "chara_id": 1067,
+        "id": 1920,
+        "relation_type": 8501
     },
     {
         "chara_id": 1068,
@@ -8120,6 +8130,11 @@
         "relation_type": 8578
     },
     {
+        "chara_id": 1067,
+        "id": 2078,
+        "relation_type": 8580
+    },
+    {
         "chara_id": 1068,
         "id": 2080,
         "relation_type": 8581
@@ -8335,9 +8350,19 @@
         "relation_type": 8607
     },
     {
+        "chara_id": 1067,
+        "id": 2137,
+        "relation_type": 8610
+    },
+    {
         "chara_id": 1018,
         "id": 2138,
         "relation_type": 8610
+    },
+    {
+        "chara_id": 1067,
+        "id": 2139,
+        "relation_type": 8611
     },
     {
         "chara_id": 1021,
@@ -8345,9 +8370,19 @@
         "relation_type": 8611
     },
     {
+        "chara_id": 1067,
+        "id": 2141,
+        "relation_type": 8612
+    },
+    {
         "chara_id": 1023,
         "id": 2142,
         "relation_type": 8612
+    },
+    {
+        "chara_id": 1067,
+        "id": 2143,
+        "relation_type": 8613
     },
     {
         "chara_id": 1035,
@@ -8355,9 +8390,19 @@
         "relation_type": 8613
     },
     {
+        "chara_id": 1067,
+        "id": 2145,
+        "relation_type": 8614
+    },
+    {
         "chara_id": 1048,
         "id": 2146,
         "relation_type": 8614
+    },
+    {
+        "chara_id": 1067,
+        "id": 2147,
+        "relation_type": 8615
     },
     {
         "chara_id": 1004,
@@ -8365,9 +8410,19 @@
         "relation_type": 8615
     },
     {
+        "chara_id": 1067,
+        "id": 2149,
+        "relation_type": 8616
+    },
+    {
         "chara_id": 1045,
         "id": 2150,
         "relation_type": 8616
+    },
+    {
+        "chara_id": 1067,
+        "id": 2151,
+        "relation_type": 8617
     },
     {
         "chara_id": 1069,
@@ -8375,9 +8430,19 @@
         "relation_type": 8617
     },
     {
+        "chara_id": 1067,
+        "id": 2155,
+        "relation_type": 8619
+    },
+    {
         "chara_id": 1003,
         "id": 2156,
         "relation_type": 8619
+    },
+    {
+        "chara_id": 1067,
+        "id": 2157,
+        "relation_type": 8620
     },
     {
         "chara_id": 1013,
@@ -8385,9 +8450,19 @@
         "relation_type": 8620
     },
     {
+        "chara_id": 1067,
+        "id": 2159,
+        "relation_type": 8621
+    },
+    {
         "chara_id": 1017,
         "id": 2160,
         "relation_type": 8621
+    },
+    {
+        "chara_id": 1067,
+        "id": 2161,
+        "relation_type": 8622
     },
     {
         "chara_id": 1014,
@@ -8395,9 +8470,19 @@
         "relation_type": 8622
     },
     {
+        "chara_id": 1067,
+        "id": 2163,
+        "relation_type": 8623
+    },
+    {
         "chara_id": 1019,
         "id": 2164,
         "relation_type": 8623
+    },
+    {
+        "chara_id": 1067,
+        "id": 2165,
+        "relation_type": 8624
     },
     {
         "chara_id": 1028,
@@ -8405,9 +8490,29 @@
         "relation_type": 8624
     },
     {
+        "chara_id": 1067,
+        "id": 2167,
+        "relation_type": 8625
+    },
+    {
         "chara_id": 1037,
         "id": 2168,
         "relation_type": 8625
+    },
+    {
+        "chara_id": 1067,
+        "id": 2169,
+        "relation_type": 8626
+    },
+    {
+        "chara_id": 1067,
+        "id": 2171,
+        "relation_type": 8627
+    },
+    {
+        "chara_id": 1067,
+        "id": 2173,
+        "relation_type": 8628
     },
     {
         "chara_id": 1039,
@@ -8415,9 +8520,19 @@
         "relation_type": 8628
     },
     {
+        "chara_id": 1067,
+        "id": 2175,
+        "relation_type": 8629
+    },
+    {
         "chara_id": 1052,
         "id": 2176,
         "relation_type": 8629
+    },
+    {
+        "chara_id": 1067,
+        "id": 2177,
+        "relation_type": 8630
     },
     {
         "chara_id": 1061,
@@ -8505,6 +8620,11 @@
         "relation_type": 2903
     },
     {
+        "chara_id": 1067,
+        "id": 2247,
+        "relation_type": 2903
+    },
+    {
         "chara_id": 1071,
         "id": 2270,
         "relation_type": 3003
@@ -8525,6 +8645,11 @@
         "relation_type": 3004
     },
     {
+        "chara_id": 1067,
+        "id": 2282,
+        "relation_type": 3004
+    },
+    {
         "chara_id": 1071,
         "id": 2286,
         "relation_type": 3101
@@ -8532,6 +8657,11 @@
     {
         "chara_id": 1062,
         "id": 2288,
+        "relation_type": 3101
+    },
+    {
+        "chara_id": 1067,
+        "id": 2293,
         "relation_type": 3101
     },
     {
@@ -8543,6 +8673,11 @@
         "chara_id": 1069,
         "id": 2296,
         "relation_type": 3101
+    },
+    {
+        "chara_id": 1067,
+        "id": 2301,
+        "relation_type": 2523
     },
     {
         "chara_id": 1068,
@@ -8560,6 +8695,11 @@
         "relation_type": 2516
     },
     {
+        "chara_id": 1067,
+        "id": 2322,
+        "relation_type": 2515
+    },
+    {
         "chara_id": 1068,
         "id": 2323,
         "relation_type": 2515
@@ -8568,6 +8708,11 @@
         "chara_id": 1068,
         "id": 2328,
         "relation_type": 2519
+    },
+    {
+        "chara_id": 1067,
+        "id": 2329,
+        "relation_type": 3201
     },
     {
         "chara_id": 1071,
@@ -8600,6 +8745,11 @@
         "relation_type": 2603
     },
     {
+        "chara_id": 1067,
+        "id": 2375,
+        "relation_type": 2603
+    },
+    {
         "chara_id": 1062,
         "id": 2385,
         "relation_type": 2604
@@ -8608,6 +8758,11 @@
         "chara_id": 1068,
         "id": 2388,
         "relation_type": 2604
+    },
+    {
+        "chara_id": 1067,
+        "id": 2391,
+        "relation_type": 101
     },
     {
         "chara_id": 1068,
@@ -8632,6 +8787,11 @@
     {
         "chara_id": 1062,
         "id": 2441,
+        "relation_type": 202
+    },
+    {
+        "chara_id": 1067,
+        "id": 2445,
         "relation_type": 202
     },
     {
@@ -8660,6 +8820,11 @@
         "relation_type": 328
     },
     {
+        "chara_id": 1067,
+        "id": 2467,
+        "relation_type": 332
+    },
+    {
         "chara_id": 1068,
         "id": 2468,
         "relation_type": 332
@@ -8675,6 +8840,11 @@
         "relation_type": 513
     },
     {
+        "chara_id": 1067,
+        "id": 2491,
+        "relation_type": 515
+    },
+    {
         "chara_id": 1068,
         "id": 2492,
         "relation_type": 515
@@ -8682,6 +8852,11 @@
     {
         "chara_id": 1013,
         "id": 2493,
+        "relation_type": 516
+    },
+    {
+        "chara_id": 1067,
+        "id": 2494,
         "relation_type": 516
     },
     {
@@ -8745,6 +8920,11 @@
         "relation_type": 2601
     },
     {
+        "chara_id": 1067,
+        "id": 2521,
+        "relation_type": 2601
+    },
+    {
         "chara_id": 1068,
         "id": 2522,
         "relation_type": 2601
@@ -8753,6 +8933,11 @@
         "chara_id": 1003,
         "id": 2531,
         "relation_type": 7028
+    },
+    {
+        "chara_id": 1067,
+        "id": 2533,
+        "relation_type": 7029
     },
     {
         "chara_id": 1068,
@@ -8773,6 +8958,11 @@
         "chara_id": 1062,
         "id": 2552,
         "relation_type": 2805
+    },
+    {
+        "chara_id": 1067,
+        "id": 2555,
+        "relation_type": 2824
     },
     {
         "chara_id": 1068,
