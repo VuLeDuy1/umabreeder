@@ -230,6 +230,11 @@
         "relation_type": 106
     },
     {
+        "chara_id": 1034,
+        "id": 56,
+        "relation_type": 106
+    },
+    {
         "chara_id": 1006,
         "id": 57,
         "relation_type": 106
@@ -292,6 +297,11 @@
     {
         "chara_id": 1031,
         "id": 72,
+        "relation_type": 201
+    },
+    {
+        "chara_id": 1034,
+        "id": 73,
         "relation_type": 201
     },
     {
@@ -855,6 +865,11 @@
         "relation_type": 506
     },
     {
+        "chara_id": 1034,
+        "id": 203,
+        "relation_type": 506
+    },
+    {
         "chara_id": 1023,
         "id": 204,
         "relation_type": 507
@@ -1157,6 +1172,11 @@
     {
         "chara_id": 1033,
         "id": 267,
+        "relation_type": 2601
+    },
+    {
+        "chara_id": 1034,
+        "id": 268,
         "relation_type": 2601
     },
     {
@@ -1575,6 +1595,11 @@
         "relation_type": 2801
     },
     {
+        "chara_id": 1034,
+        "id": 365,
+        "relation_type": 2801
+    },
+    {
         "chara_id": 1040,
         "id": 366,
         "relation_type": 2801
@@ -1965,6 +1990,11 @@
         "relation_type": 2903
     },
     {
+        "chara_id": 1034,
+        "id": 456,
+        "relation_type": 2904
+    },
+    {
         "chara_id": 1035,
         "id": 457,
         "relation_type": 2903
@@ -2310,6 +2340,11 @@
         "relation_type": 3003
     },
     {
+        "chara_id": 1034,
+        "id": 541,
+        "relation_type": 3003
+    },
+    {
         "chara_id": 1037,
         "id": 543,
         "relation_type": 3003
@@ -2412,6 +2447,11 @@
     {
         "chara_id": 1025,
         "id": 568,
+        "relation_type": 3004
+    },
+    {
+        "chara_id": 1034,
+        "id": 569,
         "relation_type": 3004
     },
     {
@@ -2610,6 +2650,11 @@
         "relation_type": 3101
     },
     {
+        "chara_id": 1034,
+        "id": 610,
+        "relation_type": 3101
+    },
+    {
         "chara_id": 1037,
         "id": 612,
         "relation_type": 3101
@@ -2660,6 +2705,11 @@
         "relation_type": 3102
     },
     {
+        "chara_id": 1034,
+        "id": 630,
+        "relation_type": 3102
+    },
+    {
         "chara_id": 1046,
         "id": 632,
         "relation_type": 3102
@@ -2707,6 +2757,11 @@
     {
         "chara_id": 1025,
         "id": 641,
+        "relation_type": 2523
+    },
+    {
+        "chara_id": 1034,
+        "id": 642,
         "relation_type": 2523
     },
     {
@@ -2772,6 +2827,11 @@
     {
         "chara_id": 1027,
         "id": 656,
+        "relation_type": 2512
+    },
+    {
+        "chara_id": 1034,
+        "id": 657,
         "relation_type": 2512
     },
     {
@@ -2877,6 +2937,11 @@
     {
         "chara_id": 1030,
         "id": 682,
+        "relation_type": 2506
+    },
+    {
+        "chara_id": 1034,
+        "id": 683,
         "relation_type": 2506
     },
     {
@@ -9615,6 +9680,11 @@
         "relation_type": 329
     },
     {
+        "chara_id": 1034,
+        "id": 2465,
+        "relation_type": 331
+    },
+    {
         "chara_id": 1067,
         "id": 2467,
         "relation_type": 332
@@ -9838,5 +9908,10 @@
         "chara_id": 1074,
         "id": 2559,
         "relation_type": 503
+    },
+    {
+        "chara_id": 1034,
+        "id": 2560,
+        "relation_type": 2530
     }
 ]
