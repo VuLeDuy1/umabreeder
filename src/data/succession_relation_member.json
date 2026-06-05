@@ -5,6 +5,11 @@
         "relation_type": 101
     },
     {
+        "chara_id": 1044,
+        "id": 2,
+        "relation_type": 101
+    },
+    {
         "chara_id": 1051,
         "id": 3,
         "relation_type": 101
@@ -442,6 +447,11 @@
     {
         "chara_id": 1040,
         "id": 106,
+        "relation_type": 202
+    },
+    {
+        "chara_id": 1044,
+        "id": 108,
         "relation_type": 202
     },
     {
@@ -1275,6 +1285,11 @@
         "relation_type": 2602
     },
     {
+        "chara_id": 1044,
+        "id": 298,
+        "relation_type": 2602
+    },
+    {
         "chara_id": 1051,
         "id": 299,
         "relation_type": 2602
@@ -2050,6 +2065,11 @@
         "relation_type": 2904
     },
     {
+        "chara_id": 1044,
+        "id": 473,
+        "relation_type": 2904
+    },
+    {
         "chara_id": 1050,
         "id": 474,
         "relation_type": 2904
@@ -2352,6 +2372,11 @@
     {
         "chara_id": 1039,
         "id": 544,
+        "relation_type": 3003
+    },
+    {
+        "chara_id": 1044,
+        "id": 545,
         "relation_type": 3003
     },
     {
@@ -2670,6 +2695,11 @@
         "relation_type": 3101
     },
     {
+        "chara_id": 1044,
+        "id": 616,
+        "relation_type": 3101
+    },
+    {
         "chara_id": 1048,
         "id": 618,
         "relation_type": 3101
@@ -2832,6 +2862,11 @@
     {
         "chara_id": 1034,
         "id": 657,
+        "relation_type": 2512
+    },
+    {
+        "chara_id": 1044,
+        "id": 658,
         "relation_type": 2512
     },
     {
@@ -3052,6 +3087,11 @@
     {
         "chara_id": 1039,
         "id": 707,
+        "relation_type": 2514
+    },
+    {
+        "chara_id": 1044,
+        "id": 708,
         "relation_type": 2514
     },
     {
@@ -3307,6 +3347,11 @@
     {
         "chara_id": 1022,
         "id": 767,
+        "relation_type": 2517
+    },
+    {
+        "chara_id": 1044,
+        "id": 768,
         "relation_type": 2517
     },
     {
@@ -6295,9 +6340,19 @@
         "relation_type": 8311
     },
     {
+        "chara_id": 1044,
+        "id": 1457,
+        "relation_type": 8312
+    },
+    {
         "chara_id": 1004,
         "id": 1458,
         "relation_type": 8312
+    },
+    {
+        "chara_id": 1044,
+        "id": 1459,
+        "relation_type": 8313
     },
     {
         "chara_id": 1007,
@@ -6305,9 +6360,19 @@
         "relation_type": 8313
     },
     {
+        "chara_id": 1044,
+        "id": 1461,
+        "relation_type": 8314
+    },
+    {
         "chara_id": 1009,
         "id": 1462,
         "relation_type": 8314
+    },
+    {
+        "chara_id": 1044,
+        "id": 1463,
+        "relation_type": 8315
     },
     {
         "chara_id": 1022,
@@ -6315,14 +6380,34 @@
         "relation_type": 8315
     },
     {
+        "chara_id": 1044,
+        "id": 1465,
+        "relation_type": 8316
+    },
+    {
         "chara_id": 1045,
         "id": 1466,
         "relation_type": 8316
     },
     {
+        "chara_id": 1044,
+        "id": 1467,
+        "relation_type": 8317
+    },
+    {
         "chara_id": 1046,
         "id": 1468,
         "relation_type": 8317
+    },
+    {
+        "chara_id": 1044,
+        "id": 1469,
+        "relation_type": 8318
+    },
+    {
+        "chara_id": 1044,
+        "id": 1471,
+        "relation_type": 8319
     },
     {
         "chara_id": 1045,
@@ -7785,6 +7870,11 @@
         "relation_type": 8460
     },
     {
+        "chara_id": 1044,
+        "id": 1836,
+        "relation_type": 8460
+    },
+    {
         "chara_id": 1069,
         "id": 1837,
         "relation_type": 2403
@@ -8350,6 +8440,11 @@
         "relation_type": 8528
     },
     {
+        "chara_id": 1044,
+        "id": 1974,
+        "relation_type": 8528
+    },
+    {
         "chara_id": 1062,
         "id": 1975,
         "relation_type": 8529
@@ -8900,6 +8995,11 @@
         "relation_type": 8604
     },
     {
+        "chara_id": 1044,
+        "id": 2126,
+        "relation_type": 8604
+    },
+    {
         "chara_id": 1068,
         "id": 2127,
         "relation_type": 8605
@@ -9087,6 +9187,11 @@
     {
         "chara_id": 1067,
         "id": 2171,
+        "relation_type": 8627
+    },
+    {
+        "chara_id": 1044,
+        "id": 2172,
         "relation_type": 8627
     },
     {
@@ -9570,6 +9675,11 @@
         "relation_type": 2603
     },
     {
+        "chara_id": 1044,
+        "id": 2378,
+        "relation_type": 2603
+    },
+    {
         "chara_id": 1072,
         "id": 2384,
         "relation_type": 2604
@@ -9703,6 +9813,11 @@
         "chara_id": 1072,
         "id": 2471,
         "relation_type": 334
+    },
+    {
+        "chara_id": 1044,
+        "id": 2473,
+        "relation_type": 335
     },
     {
         "chara_id": 1060,
@@ -9913,5 +10028,15 @@
         "chara_id": 1034,
         "id": 2560,
         "relation_type": 2530
+    },
+    {
+        "chara_id": 1022,
+        "id": 2561,
+        "relation_type": 2408
+    },
+    {
+        "chara_id": 1044,
+        "id": 2562,
+        "relation_type": 2408
     }
 ]
