@@ -19,7 +19,7 @@ import type { CharacterOption } from './components/CharacterPickerSingle.svelte'
 export const baseOptions: CharacterOption[] = characters
     .filter((c: any) => c.released === 1)
     .map((c: any) => {
-    const imagePath = `/src/assets/character_sprites/${c.name}.png`;
+    const imagePath = `/src/assets/character_sprites/char${c.id}.png`;
 
     return {
         id: c.id,
