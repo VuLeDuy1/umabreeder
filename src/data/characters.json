@@ -142,7 +142,7 @@
     {
         "id": 1029,
         "name": "Yukino Bijin",
-        "released": 0
+        "released": 1
     },
     {
         "id": 1030,
@@ -177,12 +177,12 @@
     {
         "id": 1036,
         "name": "Air Shakur",
-        "released": 0
+        "released": 1
     },
     {
         "id": 1037,
         "name": "Eishin Flash",
-        "released": 0
+        "released": 1
     },
     {
         "id": 1038,
@@ -207,7 +207,7 @@
     {
         "id": 1042,
         "name": "Seeking the Pearl",
-        "released": 0
+        "released": 1
     },
     {
         "id": 1043,
@@ -262,7 +262,7 @@
     {
         "id": 1053,
         "name": "Bamboo Memory",
-        "released": 0
+        "released": 1
     },
     {
         "id": 1054,
@@ -370,6 +370,11 @@
         "released": 1
     },
     {
+        "id": 1076,
+        "name": "Sakura Laurel",
+        "released": 0
+    },
+    {
         "id": 1077,
         "name": "Narita Top Road",
         "released": 0
@@ -377,6 +382,86 @@
     {
         "id": 1078,
         "name": "Yamanin Zephyr",
+        "released": 0
+    },
+    {
+        "id": 1083,
+        "name": "Symboli Kris S",
+        "released": 0
+    },
+    {
+        "id": 1084,
+        "name": "Tanino Gimlet",
+        "released": 0
+    },
+    {
+        "id": 1085,
+        "name": "Daiichi Ruby",
+        "released": 0
+    },
+    {
+        "id": 1086,
+        "name": "Mejiro Ramonu",
+        "released": 0
+    },
+    {
+        "id": 1087,
+        "name": "Aston Machan",
+        "released": 0
+    },
+    {
+        "id": 1088,
+        "name": "Satono Crown",
+        "released": 0
+    },
+    {
+        "id": 1089,
+        "name": "Cheval Grand",
+        "released": 0
+    },
+    {
+        "id": 1093,
+        "name": "K.S.Miracle",
+        "released": 0
+    },
+    {
+        "id": 1094,
+        "name": "Jungle Pocket",
+        "released": 0
+    },
+    {
+        "id": 1098,
+        "name": "Copano Rickey",
+        "released": 1
+    },
+    {
+        "id": 1099,
+        "name": "Hokko Tarumae",
+        "released": 0
+    },
+    {
+        "id": 1100,
+        "name": "Wonder Acute",
+        "released": 0
+    },
+    {
+        "id": 1104,
+        "name": "Katsuragi Ace",
+        "released": 0
+    },
+    {
+        "id": 1105,
+        "name": "Neo Universe",
+        "released": 0
+    },
+    {
+        "id": 1106,
+        "name": "Hishi Miracle",
+        "released": 0
+    },
+    {
+        "id": 1107,
+        "name": "Tap Dance City",
         "released": 0
     }
 ]
